@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS + Daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Job Application Tracker</title>
+</head>
+
+<body class="bg-base-200 py-14">
+    <header class="container mx-auto">
+        <!-- job status bar -->
+        <section class="job-status-top">
+            <h1 class="text-4xl text-blue-950 mb-4">Job Application Tracker</h1>
+            <div class=" flex gap-3">
+                <div class="card-body w-96 bg-base-100 card-xs shadow-sm rounded-xl">
+                    <p>Total</p>
+                    <h2 id="all-jobs-count" class="text-3xl font-bold text-blue-950">0</h2>
+                </div>
+
+                <div class="card-body w-96 bg-base-100 card-xs shadow-sm rounded-xl">
+                    <p>Interview</p>
+                    <h2 id="interview-jobs-count" class="text-3xl font-bold text-green-600">0</h2>
+                </div>
+
+                <div class="card-body w-96 bg-base-100 card-xs shadow-sm rounded-xl">
+                    <p>Rejected</p>
+                    <h2 id="rejected-jobs-count" class="text-3xl font-bold text-red-600">0</h2>
+                </div>
+            </div>
+        </section>
+        <hr class="my-6">
+    </header>
+    <main class="container mx-auto">
+        <!-- available jobs -->
+        <section class="pb-4">
+            <div class="flex justify-between pb-6">
+                <h2>Available Jobs</h2>
+                <p><span id="avail-jobs-count-r">0</span> jobs</p>
+
+            </div>
+            <div id="switch-tab-btn-container">
+                <button id="all-btn-p" class="switch-tab-btn btn w-28" onclick="switchTabColor(0)">All</button>
+                <button id="interview-btn-p" class="switch-tab-btn btn w-28"
+                    onclick="switchTabColor(1)">Interview</button>
+                <button id="rejected-btn-p" class="switch-tab-btn btn w-28"
+                    onclick="switchTabColor(2)">Rejected</button>
+            </div>
+        </section>
+        <!-- all available job cards -->
+        <section id="available-jobs-container">
+            <!-- Card 0 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">Mobile First Corp</h2>
+                        <p>React Native Developer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Remote - Full Time - $130k to $175k</p>
+                    <!-- btns status -->
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Build cross-platform mobile applications using React Native. Work on products used
+                        by millions of
+                        users worldwide.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s btn btn-outline btn-error">Rejected</button>
+            </div>
+            <!-- Card 1 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">TechNova Ltd</h2>
+                        <p>Frontend Developer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Remote - Full Time - $90k to $110k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Develop responsive user interfaces using modern JavaScript frameworks.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s btn btn-outline btn-error">Rejected</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">SoftTech Inc</h2>
+                        <p>Backend Developer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Hybrid - Full Time - $100k to $130k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Build and maintain secure APIs and server-side applications.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s btn btn-outline btn-error">Rejected</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">CloudBase</h2>
+                        <p>Cloud Engineer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Remote - Contract - $120k to $150k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Manage cloud infrastructure and deploy scalable applications.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s btn btn-outline btn-error">Rejected</button>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">NextGen Apps</h2>
+                        <p>Full Stack Developer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Onsite - Full Time - $95k to $120k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Work on both frontend and backend development of web apps.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s  btn btn-outline btn-error">Rejected</button>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">DesignHub</h2>
+                        <p>UI/UX Designer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Remote - Part Time - $70k to $90k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Design modern and user-friendly interfaces for web applications.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s  btn btn-outline btn-error">Rejected</button>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">SecureNet</h2>
+                        <p>Cyber Security Analyst</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Hybrid - Full Time - $110k to $140k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Protect systems and monitor applications for security threats.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s  btn btn-outline btn-error">Rejected</button>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="p-4 mb-4 bg-base-100 shadow-sm rounded-xl jobs-card">
+                <div class="flex justify-between mb-2.5">
+                    <div>
+                        <h2 class="text-2xl font-medium">AI Labs</h2>
+                        <p>Machine Learning Engineer</p>
+                    </div>
+                    <button class="card-dlt-btn btn rounded-full"><i class="fa-solid fa-trash-can"></i></button>
+                </div>
+                <div>
+                    <p>Remote - Full Time - $140k to $180k</p>
+                    <button class="bg-gray-300 font-medium py-3 px-5 my-3 rounded-xl status-btn">NOT APPLIED</button>
+                    <p class="mb-4">Develop AI models and machine learning based solutions.</p>
+                </div>
+                <button class="interview-btn-s btn btn-outline btn-success">Interview</button>
+                <button class="rejected-btn-s  btn btn-outline btn-error">Rejected</button>
+            </div>
+        </section>
+
+        <!-- interview container area -->
+        <section id="interview-jobs-container" class="hidden">
+        </section>
+
+        <!-- rejected container area -->
+        <section id="rejected-jobs-container" class="hidden">
+        </section>
+
+        <!-- not available job page -->
+        <section id="no-jobs-available" class="text-center py-10 hidden">
+            <img src="/assets/jobs.png" alt="" class="mx-auto">
+            <h2 class="text-2xl text-blue-950 font-medium">No jobs available</h2>
+            <p>Check back soon for new job opportunities</p>
+        </section>
+    </main>
+    <script src="script/index.js"></script>
+    <script src="script/cardswitch.js"></script>
+</body>
+
+</html>
