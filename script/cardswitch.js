@@ -34,6 +34,7 @@ for (const btn of rejectedBtns) {
         const card = event.target.closest('.jobs-card');
 
         // Find and Update the Status Button inside this card
+        const statusBtn = card.querySelector('.status-btn');
         if (statusBtn) {
             statusBtn.innerText = "REJECTED";
             statusBtn.classList.remove('bg-gray-300');
